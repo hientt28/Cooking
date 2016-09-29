@@ -15,7 +15,13 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 
+        'email', 
+        'password',
+        'avatar',
+        'role',
+        'confirmed',
+        'confirmation_code',
     ];
 
     /**
@@ -24,6 +30,37 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password', 
+        'remember_token',
     ];
+
+    public function relationships()
+    {
+        return $this->hasMany(Relationship::class);
+    }
+
+    public function posts()
+    {
+        return $this->hasMany(Post::class, 'user_id');
+    }
+
+    public function notifications()
+    {
+        return $this->hasMany(Notification::class);
+    }
+
+    public function rates()
+    {
+        return $this->hasMany(Rate::class);
+    }
+
+    public function answers()
+    {
+        return $this->hasMany(Answer::class);
+    }
+
+    public function socialAccounts()
+    {
+        return $this->hasMany(SocialAccount::class);
+    }
 }
