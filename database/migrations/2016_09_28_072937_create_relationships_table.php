@@ -16,9 +16,9 @@ class CreateRelationshipsTable extends Migration
         Schema::create('relationships', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('following');
-            $table->interger('follower');
+            $table->integer('follower');
             $table->timestamps();
-            $table->solfDeletes();
+            $table->softDeletes();
         });
     }
 
