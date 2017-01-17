@@ -6,18 +6,19 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\Method;
 
-class Category extends Model
+class Step extends Model
 {
     use SoftDeletes;
 
     protected $fillable = [
-    	'name',
-    	'description',
-    	'image',
+        'method_id',
+        'name',
+        'description',
+        'image',
     ];
 
-    public function methods()
+    public function method()
     {
-    	return $this->hasMany(Method::class);
+        return $this->belongsTo(Method::class);
     }
 }
