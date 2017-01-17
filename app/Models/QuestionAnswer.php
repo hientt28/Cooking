@@ -5,19 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\User;
-use App\Models\Method;
-use App\Models\QuestionAnswer;
+use App\Models\Notification;
+use App\Models\Comment;
 
-class Notification extends Model
+class QuestionAnswer extends Model
 {
     use SoftDeletes;
 
     protected $fillable = [
     	'user_id',
+    	'title',
+    	'content',
+    	'slug',
     	'status',
-    	'target_id',
-    	'type',
-    	'message',
     ];
 
     public function user()
@@ -25,13 +25,13 @@ class Notification extends Model
     	return $this->belongsTo(User::class);
     }
 
-    public function method()
+    public function notification()
     {
-    	return $this->belongsTo(Method::class);
+    	return $this->belongsTo(Notification::class);
     }
 
-    public function questionAnswer()
+    public function comments()
     {
-    	return $this->belongsTo(QuestionAnswer::class);
+        return $this->morphMany(Comment::class, 'target');
     }
 }

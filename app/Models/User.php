@@ -4,10 +4,17 @@ namespace App\Models;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Models\Notification;
+use App\Models\Methods;
+use App\Models\QuestionAnswers;
+use App\Models\SocialAccount;
+use App\Models\Comment;
 
 class User extends Authenticatable
 {
     use Notifiable;
+    use SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -15,11 +22,10 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 
-        'email', 
+        'name',
+        'email',
         'password',
         'avatar',
-        'role',
         'confirmed',
         'confirmation_code',
     ];
@@ -30,18 +36,18 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 
+        'password',
         'remember_token',
     ];
 
-    public function relationships()
+    public function followers()
     {
-        return $this->hasMany(Relationship::class);
+        return $this->belongsToMany(User::class, 'relationships', 'following_id', 'follower_id');
     }
 
-    public function posts()
+    public function followings()
     {
-        return $this->hasMany(Post::class, 'user_id');
+        return $this->belongsToMany(User::class, 'relationships', 'follower_id', 'following_id');
     }
 
     public function notifications()
@@ -49,18 +55,28 @@ class User extends Authenticatable
         return $this->hasMany(Notification::class);
     }
 
-    public function rates()
+    public function methodRates()
     {
-        return $this->hasMany(Rate::class);
+        return $this->belongsToMany(Method::class, 'rates')->withPivot('level');
     }
 
-    public function answers()
+    public function questionAnswers()
     {
-        return $this->hasMany(Answer::class);
+        return $this->hasMany(QuestionAnswer::class);
     }
 
     public function socialAccounts()
     {
         return $this->hasMany(SocialAccount::class);
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+
+    public function methods()
+    {
+        return $this->hasMany(Method::class);
     }
 }
