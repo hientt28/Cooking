@@ -8,3 +8,6 @@ Homestead.yaml
 .env
 public/bower_components
 /storage
+/public/css
+/public/js
+/public/images
