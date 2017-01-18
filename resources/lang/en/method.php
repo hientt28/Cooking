@@ -1,0 +1,28 @@
+<?php
+
+return [
+    'dish_name' => 'Dish Name',
+    'avatar' => 'Click to upload avatar',
+    'description' => 'Description',
+    'level_time' => 'Level, Time (minute)',
+    'not_specified' => 'Not Specified',
+    'difficult' => 'Difficult',
+    'medium' => 'Medium',
+    'easy' => 'Easy',
+    'minute' => 'Minute',
+    'video' => 'Video',
+    'youtube_code' => '(Youtube Code)',
+    'code'=> 'L8Ss6EqoZKg',
+    'method_information' => 'Methods Information',
+    'you_code' => 'https://www.youtube.com/watch?v=L8Ss6EqoZKg. Code= L8Ss6EqoZKg',
+    'material' => 'Material',
+    'other_material' => 'Other Material',
+    'steps_taken' => 'Steps Taken',
+    'add_steps_taken' => 'Add steps taken',
+    'help' => 'Help steps taken',
+    'add' => 'Add',
+    'close' => 'Close',
+    'method_list' => 'Methods List',
+    'update_method' => 'Update Methods',
+    'delete_method' => 'Delete Methods',
+];
