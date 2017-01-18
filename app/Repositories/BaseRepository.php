@@ -5,7 +5,7 @@ namespace App\Repositories;
 use DB;
 use Exception;
 
-abstract class BaseRepository
+abstract class BaseRepository implements BaseRepositoryInterface
 {
     protected $model;
 

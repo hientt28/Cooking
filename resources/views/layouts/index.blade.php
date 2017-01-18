@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html>
+<html ng-app="cooks">
 <head>
     <title>{{ trans('layout.title') }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -14,7 +14,6 @@
 
     <!-- content -->
     @yield('content')
-
     <!-- footer -->
     @yield('footer')
     

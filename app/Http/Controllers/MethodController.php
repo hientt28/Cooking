@@ -3,10 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\User;
+use App\Repositories\Methods\MethodRepository;
 
-class UserController extends Controller
+class MethodController extends Controller
 {
+    protected $methodRepository;
+
+    public function __construct(MethodRepository $methodRepository) 
+    {
+        $this->methodRepository = $methodRepository;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,9 +20,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::all();
-        
-        return $users;
+        $methods = $this->methodRepository->index('limit', config('common.limit.page_limit'));
+
+        return view('methods.index', compact('methods'));
     }
 
     /**
@@ -26,7 +32,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('methods.create');
     }
 
     /**
@@ -37,7 +43,8 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        
     }
 
     /**
