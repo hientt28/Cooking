@@ -14,7 +14,7 @@ class UpdateCommentsTable extends Migration
     public function up()
     {
         Schema::table('comments', function($table) {
-            $table->renameColumn('taget', 'target_type');
+            $table->renameColumn('type', 'target_type');
         });
     }
 
@@ -26,7 +26,7 @@ class UpdateCommentsTable extends Migration
     public function down()
     {
         Schema::table('comments', function($table) {
-            $table->renameColumn('target_type', 'taget');
+            $table->renameColumn('target_type', 'type');
         });
     }
 }

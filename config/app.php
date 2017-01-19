@@ -180,6 +180,7 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        JD\Cloudder\CloudderServiceProvider::class,
         App\Providers\RepositoryServiceProvider::class
 
     ],
@@ -232,8 +233,8 @@ return [
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
+        'Cloudder' => JD\Cloudder\Facades\Cloudder::class,
         'Debugbar' => Barryvdh\Debugbar\Facade::class
-
     ],
 
 ];

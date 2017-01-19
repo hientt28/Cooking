@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use DB;
 use Exception;
+use Cloudder;
 
 abstract class BaseRepository
 {
@@ -97,10 +98,20 @@ abstract class BaseRepository
             }
 
             DB::commit();
+
             return $data;
         } catch (Exception $ex) {
             DB::rollBack();
+            
             return ['error' => $ex->getMessage()];
         }
+    }
+
+    public function cloudder($fileName, $path)
+    {
+        Cloudder::upload($fileName, $path);
+        $result = Cloudder::getResult()['url'];
+
+        return $result;
     }
 }
