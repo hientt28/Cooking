@@ -4,10 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests;
-use App\Models\User;
+use App\Repositories\User\UsersRepository;
 
 class UserController extends Controller
 {
+    protected $userRepository;
+
+    public function __construct(UsersRepository $userRepository)
+    {
+        $this->userRepository = $userRepository;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -15,9 +21,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::all();
-        
-        return $users;
+       //
     }
 
     /**
@@ -49,18 +53,9 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
-    }
+        $user = $this->userRepository->show($id);
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+        return \Response::json($user);
     }
 
     /**
