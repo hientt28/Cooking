@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class UpdateCommentsTable extends Migration
+class UpdateUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class UpdateCommentsTable extends Migration
      */
     public function up()
     {
-        Schema::table('comments', function($table) {
-            $table->renameColumn('type', 'target_type');
+        Schema::table('users', function($table) {
+            $table->string('avatar', 200)->default('images/default.png')->change();
         });
     }
 
@@ -25,8 +25,8 @@ class UpdateCommentsTable extends Migration
      */
     public function down()
     {
-        Schema::table('comments', function($table) {
-            $table->renameColumn('target_type', 'type');
+        Schema::table('users', function($table) {
+            $table->string('avatar', 200)->nullable()->default(null)->change();
         });
     }
 }
