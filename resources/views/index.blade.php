@@ -37,7 +37,7 @@
                         <ul class="nav navbar-nav">
                             <li><a href="#/" class="active">{{ trans('layout.home') }}</a></li>
                             <li><a href="#">{{ trans('layout.blog') }}</a></li>
-                            <li><a href="#">{{ trans('layout.createPost') }}</a></li>
+                            <li><a href="methods/create">{{ trans('layout.createPost') }}</a></li>
                             <li><a href="#">{{ trans('layout.mailUs') }}</a></li>
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
@@ -88,6 +88,7 @@
     <script src="{{ asset('angularjs/services/UserService.js') }}"></script>
     <script src="{{ asset('angularjs/controllers/ShowProfile.js') }}"></script>
     <script src="{{ asset('angularjs/controllers/EditProfile.js') }}"></script>
+    <script src="{{ asset('angularjs/controllers/methodController.js') }}"></script>
     <script> var baseUrl = "{{ url('/') }}/";</script>
 </body>
 </html>

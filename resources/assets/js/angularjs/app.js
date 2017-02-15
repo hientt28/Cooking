@@ -12,6 +12,10 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
         controller: 'EditProfile',
         templateUrl: '/templates/users/editProfile.html'
     });
+    $routeProvider.when('/methods/create', {
+        controller: 'methodController',
+        templateUrl: '/templates/methods/createMethod.html'    
+    });
 
     $locationProvider.html5Mode(true);
 }]);
