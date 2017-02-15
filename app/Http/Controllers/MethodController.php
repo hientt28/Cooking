@@ -40,7 +40,7 @@ class MethodController extends Controller
     public function create()
     {
         $listCategories = $this->categoryRepository->listCategories();
-        
+
         return view('methods.create', compact('listCategory'));
     }
 
