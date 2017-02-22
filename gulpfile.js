@@ -16,9 +16,5 @@ require('laravel-elixir-vue');
 elixir(mix => {
     mix.styles('layout.css')
        .sass('app.scss')
-       .webpack('app.js')
-       .scripts('angularjs/app.js', 'public/angularjs/app.js')
-       .scripts('angularjs/services/UserService.js', 'public/angularjs/services/UserService.js')
-       .scripts('angularjs/controllers/ShowProfile.js', 'public/angularjs/controllers/ShowProfile.js')
-       .scripts('angularjs/controllers/EditProfile.js', 'public/angularjs/controllers/EditProfile.js');
+       .webpack('app.js');
 });

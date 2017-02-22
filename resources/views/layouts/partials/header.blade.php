@@ -20,7 +20,7 @@
                     <ul class="nav navbar-nav">
                         <li><a href="#" class="active">{{ trans('layout.home') }}</a></li>
                         <li><a href="#">{{ trans('layout.blog') }}</a></li>
-                        <li><a href="#">{{ trans('layout.createPost') }}</a></li>
+                        <li><a href="#">{{ trans('layout.method') }}</a></li>
                         <li><a href="#">{{ trans('layout.mailUs') }}</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
