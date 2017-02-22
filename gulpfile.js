@@ -19,6 +19,8 @@ elixir(mix => {
        .webpack('app.js')
        .scripts('angularjs/app.js', 'public/angularjs/app.js')
        .scripts('angularjs/services/UserService.js', 'public/angularjs/services/UserService.js')
+       .scripts('angularjs/controllers/methodController.js', 'public/angularjs/controllers/methodController.js')
+       .scripts('angularjs/controllers/EditMethod.js', 'public/angularjs/controllers/EditMethod.js')
        .scripts('angularjs/controllers/ShowProfile.js', 'public/angularjs/controllers/ShowProfile.js')
        .scripts('angularjs/controllers/EditProfile.js', 'public/angularjs/controllers/EditProfile.js');
 });

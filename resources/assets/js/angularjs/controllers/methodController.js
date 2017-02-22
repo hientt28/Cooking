@@ -1,0 +1,28 @@
+app.controller('methodController', function($scope, $http, $location, API_URL) {
+    $http({
+        method: 'GET',
+        url: API_URL + 'methods'
+    }).then(function success(response) {
+          $scope.methods = response;
+    });
+    
+    $scope.save = function() {
+        var url = API_URL + 'methods';
+        var data = $.param($scope.methods);
+
+        $http({
+            method : 'POST',
+            url : url,
+            data : data,
+            headers : {'Content-Type':'multipart/form-data'}
+        })
+        .success(function(response) {
+            console.log(response);
+            location.reload();
+        })
+        .error(function(response) {
+            console.log(response);
+            alert('Error please check log');
+        }); 
+    }
+});
