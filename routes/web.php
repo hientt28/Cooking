@@ -17,6 +17,10 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index');
+Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('api/users', 'UserController', ['except' => 'edit']);
+
+Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
+
+Route::get('/register/verify/{confirmationCode}', 'Auth\RegisterController@confirm');

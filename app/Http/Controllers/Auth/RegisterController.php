@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\User;
+use App\Models\User;
 use Validator;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use App\Repositories\User\UsersRepository;
+use App\Http\Requests\RegisterRequest;
+use Auth;
 
 class RegisterController extends Controller
 {
@@ -28,15 +32,17 @@ class RegisterController extends Controller
      * @var string
      */
     protected $redirectTo = '/home';
+    protected $userRepository;
 
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(UsersRepository $userRepository)
     {
         $this->middleware('guest');
+        $this->userRepository = $userRepository;
     }
 
     /**
@@ -67,5 +73,41 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
+    }
+
+    public function register(RegisterRequest $request)
+    {
+        $confirmationCode = str_random(config('common.user.confirmation_code.length'));
+        $input = [
+            'email' => $request->email,
+            'name' => $request->name,
+            'password' => $request->password,
+            'confirmed' => config('common.user.confirmed.not_confirm'),
+            'confirmation_code' => $confirmationCode,
+        ];
+        $sendMailData = [
+            'email' => $request->email,
+            'name' => $request->name,
+            'confirmation_code' => $confirmationCode,
+        ];
+        try {
+            $user = $this->userRepository->create($input, $sendMailData);
+        } catch (Exception $e) {
+            return redirect()->route('home')->withError($e->getMessage());
+        }
+
+        return redirect()->back()->withErrors(trans('message.register_active'));
+    }
+    
+    public function confirm($confirmationCode)
+    {
+        try {
+            $user = $this->userRepository->updateConfirm($confirmationCode);
+            Auth::login($user);
+
+            return redirect()->route('home');
+        } catch (Exception $e) {
+            return redirect()->route('home')->withError($e->getMessage());
+        }
     }
 }
