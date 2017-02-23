@@ -27,14 +27,13 @@
                 <h4>{{ trans('layout.continue_with') }}</h4>
                 <div class="bottom">
                     <a class="btn btn-primary btn-sm" rel="publisher"
-                       href="https://plus.google.com/shahnuralam">
+                       href="{{ url('login/facebook')}}">
                         <i class="fa fa-facebook"></i>
                     </a>
-                    <a class="btn btn-primary btn-twitter btn-sm" href="#">
+                    <a class="btn btn-primary btn-twitter btn-sm" href="{{ url('login/twitter')}}">
                         <i class="fa fa-twitter"></i>
                     </a>
-                    <a class="btn btn-danger btn-sm" rel="publisher"
-                       href="#">
+                    <a class="btn btn-danger btn-sm" rel="publisher" href="{{ url('login/google') }}">
                         <i class="fa fa-google-plus"></i>
                     </a>
                 </div>
