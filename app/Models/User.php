@@ -10,6 +10,7 @@ use App\Models\Methods;
 use App\Models\QuestionAnswers;
 use App\Models\SocialAccount;
 use App\Models\Comment;
+use Hash;
 
 class User extends Authenticatable
 {
@@ -78,5 +79,25 @@ class User extends Authenticatable
     public function methods()
     {
         return $this->hasMany(Method::class);
+    }
+
+    public function scopeConfirmationCode($query, $confirmationCode)
+    {
+        return $query->where('confirmation_code', $confirmationCode);
+    }
+
+    public function setPasswordAttribute($value)
+    {
+        $this->attributes['password'] = Hash::make($value);
+    }
+
+    public function getAvatarAttribute($avatar = null)
+    {
+        return isset($avatar) ? $avatar : config('common.user.default_avatar');
+    }
+
+    public function isAdmin()
+    {
+        return $this->role == config('common.roles.admin');
     }
 }

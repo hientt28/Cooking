@@ -2,64 +2,47 @@
 
 @section('content')
 <div class="container">
+    @include('errors.errors')
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Login</div>
-                <div class="panel-body">
-                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
-                        {{ csrf_field() }}
-
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus>
-
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
+        <div class="agile-info_w3ls agile-info_w3ls_sub hvr-buzz-out" id="margin-login">
+            <h3>{{ trans('layout.login') }}</h3>
+            <div class="agile-info_w3ls_grid second">
+                <form action="{{ route('login') }}" method="POST">
+                    {{ csrf_field() }}
+                    <div class="form-group">
+                        <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus placeholder="Email">
+                    </div>
+                    <div class="form-group">
+                        <input id="password" type="password" class="form-control" name="password" required placeholder="Password">
+                    </div>
+                    <div class="agile_remember">
+                        <div class="agile_remember_left">
+                            <div class="check">
+                                <label class="checkbox"><input type="checkbox" name="checkbox"><i> </i>{{ trans('layout.remember') }}</label>
                             </div>
                         </div>
-
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="password" class="col-md-4 control-label">Password</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password" required>
-
-                                @if ($errors->has('password'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="remember"> Remember Me
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-8 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Login
-                                </button>
-
-                                <a class="btn btn-link" href="{{ url('/password/reset') }}">
-                                    Forgot Your Password?
-                                </a>
-                            </div>
-                        </div>
-                    </form>
+                    </div>
+                    <button type="submit">{{ trans('layout.signin') }}</button>
+                </form>
+                <h4>{{ trans('layout.continue_with') }}</h4>
+                <div class="bottom">
+                    <a class="btn btn-primary btn-sm" rel="publisher"
+                       href="https://plus.google.com/shahnuralam">
+                        <i class="fa fa-facebook"></i>
+                    </a>
+                    <a class="btn btn-primary btn-twitter btn-sm" href="#">
+                        <i class="fa fa-twitter"></i>
+                    </a>
+                    <a class="btn btn-danger btn-sm" rel="publisher"
+                       href="#">
+                        <i class="fa fa-google-plus"></i>
+                    </a>
+                </div>
+                <h5>{{ trans('message.signup_account') }} <a href="{{ route('register') }}">{{ trans('layout.signup') }}</a></h5>
+                <div class="agile_remember_right">
+                    <a href="{{ action('Auth\ForgotPasswordController@showLinkRequestForm') }}">
+                        {{ trans('layout.forgot_password') }}
+                    </a>
                 </div>
             </div>
         </div>

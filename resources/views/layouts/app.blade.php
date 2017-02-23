@@ -11,12 +11,19 @@
 </head>
 <body>
     @include('layouts.partials.header')
-    <div>
-        <section>
+    @if (Auth::check() && Auth::user()->isAdmin())
+        @include('layouts.partials.sidebar')
+    @endif
+
+    @if (!Auth::guest())
+        <div id="page-wrapper">
             @yield('content')
-        </section>
-    </div>
+        </div>
+    @else
+        @yield('content')
+    @endif
+
     @include('layouts.scripts')
-    @yield('script')  
+    @yield('script')
 </body>
 </html>
