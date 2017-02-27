@@ -164,6 +164,7 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
+        JD\Cloudder\CloudderServiceProvider::class,
         Barryvdh\Debugbar\ServiceProvider::class,
 
         /*
@@ -232,6 +233,7 @@ return [
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
+        'Cloudder' => JD\Cloudder\Facades\Cloudder::class,
         'Debugbar' => Barryvdh\Debugbar\Facade::class
 
     ],

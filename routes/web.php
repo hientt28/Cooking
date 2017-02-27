@@ -24,3 +24,7 @@ Route::resource('api/users', 'UserController', ['except' => 'edit']);
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
 Route::get('/register/verify/{confirmationCode}', 'Auth\RegisterController@confirm');
+
+Route::get('login/{social}', ['as' => 'login.{social}', 'uses' => 'SocialAccountController@redirectToProvider']);
+
+Route::get('login/{social}/callback', ['as' => 'login.{social}.callback', 'uses' => 'SocialAccountController@handleProviderCallback']);
